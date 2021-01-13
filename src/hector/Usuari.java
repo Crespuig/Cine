@@ -7,7 +7,6 @@ public class Usuari extends Thread{
 	private int nSessio;
 	private int nEntrades;
 	private ArrayList<Seient> llistaSeients;
-	private Cine cine;
 	
 	public Usuari() {
 	}
@@ -25,7 +24,7 @@ public class Usuari extends Thread{
 	@Override
 	public void run() {
 		try {
-			Cine.compraEntradaPelicula(llistaSeients);
+			Cine.compraEntradaPelicula(nPelicula, nSessio, llistaSeients);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

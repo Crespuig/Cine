@@ -28,7 +28,7 @@ public class Cine {
 		//carregaDades Inicials
 		carregaDadesInicials();
 		
-		Usuari u1 = new Usuari(1, 1, 2, seients);
+		
 
 		do{
 			opcio = menu();
@@ -167,10 +167,11 @@ public class Cine {
 				break;
 
 			case 11: //Comprar ENTRADA
+				Usuari u1 = new Usuari(1, 1, 2, seients);
 				System.out.println("Comprant ENTRADA...");
 				u1.start();
 				u1.join();
-				compraEntradaPelicula(seients);
+				//compraEntradaPelicula(seients);
 				System.out.println("\n\n");
 				break;
 				//********
@@ -186,14 +187,14 @@ public class Cine {
 
 	//*********************************************************
 	//COMPRA INTERACTIVA D'UNA UNICA ENTRADA
-	public static void compraEntradaPelicula(ArrayList<Seient>llistaSeients) throws InterruptedException{
+	public static void compraEntradaPelicula(int pelicula, int sessio, ArrayList<Seient>llistaSeients) throws InterruptedException{
 
 		Pelicula p = null;
 		Sala sa = null;
 		Sessio se = null;
 		//		String nsala, nsessio, npelicula, nfila, nseient;
 		//		int sala, 
-		int sessio, pelicula, fila, seient;
+		int /*sessio, pelicula,*/ fila, seient;
 		
 		
 
