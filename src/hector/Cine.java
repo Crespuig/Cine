@@ -17,13 +17,10 @@ public class Cine {
 		Sales sales = new Sales();
 		Sessions sessions = new Sessions();
 		Pelicules pelicules = new Pelicules();
-		ArrayList<Seient> seients = new ArrayList<Seient>();
+		ArrayList<Seient> seients1 = new ArrayList<Seient>();
 		
-		Seient s1 = new Seient(1, 1);
-		Seient s2 = new Seient(1, 2);
-		
-		seients.add(s1);
-		seients.add(s2);
+		seients1.add(new Seient(1, 1));
+		seients1.add(new Seient(1, 2));
 
 		//carregaDades Inicials
 		carregaDadesInicials();
@@ -167,10 +164,11 @@ public class Cine {
 				break;
 
 			case 11: //Comprar ENTRADA
-				Usuari u1 = new Usuari(1, 1, 2, seients);
+				Usuari u1 = new Usuari(1, 1, 2, seients1);
+				Usuari u2 = new Usuari(1, 1, 2, seients1);
 				System.out.println("Comprant ENTRADA...");
 				u1.start();
-				u1.join();
+				u2.start();
 				//compraEntradaPelicula(seients);
 				System.out.println("\n\n");
 				break;
@@ -273,12 +271,14 @@ public class Cine {
 		if (isReservat){ //Compra seients
 			System.out.println("\nSEIENT RESERVATS: "+seientsAcomprar.size());
 			pagamentEntrada(new BigDecimal(numEntrades).multiply(se.getPreu()));
-			for (int i=0; i < seientsAcomprar.size(); i++){
-				Seient s = seientsAcomprar.get(i);
-				s.ocupaSeient(); 		//ocupa seient
-				se.imprimirTicket(s,se, sa, p);
-				System.out.println();
-			}//for
+			synchronized(Cine.class) {
+				for (int i=0; i < seientsAcomprar.size(); i++){
+					Seient s = seientsAcomprar.get(i);
+					s.ocupaSeient(); 		//ocupa seient
+					se.imprimirTicket(s,se, sa, p);
+					System.out.println();
+				}//for
+			}	
 		}else{// Llibera seients
 			System.out.println("\t\tNO sha pogut fer la compra de "+numEntrades+" entrades. Es queden Lliures");
 			for (int i=0; i < seientsAcomprar.size(); i++){
@@ -366,6 +366,8 @@ public class Cine {
 		p3.setSessioPeli(s3);
 
 	}
+	
+	
 	
 	
 }

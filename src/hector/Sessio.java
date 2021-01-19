@@ -160,7 +160,7 @@ public class Sessio {
 
 	//*********************************************************
 	//Mostra la distribució de SEIENTS a la SALA
-	public void mapaSessio(){
+	public synchronized void mapaSessio(){
 		System.out.println("\n\t --------  MAPA SESSIO  -----------");
 		//CAPÇALERA de la SALA
 		System.out.print("\t Seient-> ");
